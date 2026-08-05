@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e293b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #334155;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+    
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        
+        section {
+            padding: 100px 10% 80px 10%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            color: var(--secondary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        
+        #home {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .home-content {
+            flex: 1;
+        }
+
+        .home-content h3 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .home-content h1 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin: 10px 0;
+        }
+
+        .home-content p {
+            margin-bottom: 25px;
+            color: #64748b;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        .home-img {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .home-img img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+        }
+
+        
+        #tentang {
+            background-color: #ffffff;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: #475569;
+        }
+
+        
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .edu-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .edu-card span {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .edu-card h3 {
+            margin: 10px 0 5px 0;
+            color: var(--secondary-color);
+        }
+
+        .edu-card h4 {
+            font-size: 0.95rem;
+            color: #64748b;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        
+        #keahlian {
+            background-color: #ffffff;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-box {
+            background: var(--bg-color);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            transition: transform 0.3s;
+        }
+
+        .skill-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-box i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .skill-box h3 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+    
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary-color);
+        }
+
+        .contact-container button {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--secondary-color);
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        
+        @media (max-width: 768px) {
+            #home {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 120px;
+            }
+            .home-img img {
+                width: 220px;
+                height: 220px;
+            }
+            nav ul {
+                display: none;
+            }
+            .about-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <header>
+        <a href="#home" class="logo">Portofolio.</a>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#tentang">Tentang Kami</a></li>
+                <li><a href="#pendidikan">Pendidikan</a></li>
+                <li><a href="#keahlian">Keahlian</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    
+    <section id="home">
+        <div class="home-content">
+            <h3>Halo, Nama Saya</h3>
+            <h1>Firman & Naufal</h1>
+            <p>Kita adalah seorang Web Developer dan Desainer UI/UX yang bersemangat dalam membangun antarmuka web yang interaktif dan responsif.</p>
+            <a href="#kontak" class="btn">Hubungi Saya</a>
+        </div>
+        <div class="home-img">
+            
+            <img src="foto.jfif" alt="Foto Profil">
+        </div>
+    </section>
+
+    
+    <section id="tentang">
+        <h2 class="section-title">Tentang Kami</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <p>Kami adalah tim profesional yang berdedikasi tinggi dalam menciptakan solusi digital berkualitas tinggi untuk klien dari berbagai latar belakang industri.</p>
+                <p>Dengan pengalaman bertahun-tahun di bidang pengembangan perangkat lunak dan desain kreatif, kami selalu mengutamakan inovasi, kecepatan, serta kepuasan pengguna dalam setiap proyek yang dikerjakan.</p>
+                <p>Misi kami adalah membantu mentransformasikan ide-ide kreatif Anda menjadi produk digital yang fungsional dan memiliki daya saing tinggi di era modern.</p>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="pendidikan">
+        <h2 class="section-title">Pendidikan</h2>
+        <div class="education-grid">
+            <div class="edu-card">
+                <span>2015-2020</span>
+                <h3>SDN NARAWITA 2</h3>
+                <p>Fokus Eskul Pramuka dan Pakibra.</p>
+            </div>
+            <div class="edu-card">
+                <span>2015 - 2020</span>
+                <h3>SDN BEOR 1</h3>
+                <p>Fokus Eskul Futsal.</p>
+            </div>
+        </div>
+        <div class="education-grid">
+            <div class="edu-card">
+                <span>2020-2023</span>
+                <h3>SMP NEGERI 2 CICALENGKA</h3>
+                <p>Fokus mempelajari rekayasa perangkat lunak, struktur data, dan pengembangan aplikasi berbasis web.</p>
+            </div>
+            <div class="edu-card">
+                <span>2020 - 2023</span>
+                <h3>MTS RIYADHUL HUDA</h3>
+                <p>Aktif dalam kegiatan ekstrakurikuler komputer dan olimpiade matematika.</p>
+            </div>
+        </div>
+         <div class="education-grid">
+            <div class="edu-card">
+                <span>2024-2027</span>
+                <h3>SMK MUTHIA HARAPAN CICALENGKA</h3>
+                <p>Fokus mempelajari rekayasa perangkat lunak, struktur data, dan pengembangan aplikasi berbasis web.</p>
+            </div>
+            <div class="edu-card">
+                <span>2024 - 2027</span>
+                <h3>SMK MUTHIA HARAPAN CICALENGKA</h3>
+                <p>Aktif dalam kegiatan ekstrakurikuler komputer dan olimpiade matematika.</p>
+            </div>
+        </div>
+    </section>
+    
+        
+    
+    <section id="keahlian">
+        <h2 class="section-title">Keahlian</h2>
+        <div class="skills-container">
+            <div class="skill-box">
+                <i class="fab fa-html5"></i>
+                <h3>HTML & CSS</h3>
+            </div>
+            <div class="skill-box">
+                <i class="fab fa-js"></i>
+                <h3>JavaScript</h3>
+            </div>
+            <div class="skill-box">
+                <i class="fab fa-react"></i>
+                <h3>React.js</h3>
+            </div>
+            <div class="skill-box">
+                <i class="fas fa-paint-brush"></i>
+                <h3>UI/UX Design</h3>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="kontak">
+        <h2 class="section-title">Kontak</h2>
+        <div class="contact-container">
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="pesan">Pesan</label>
+                    <textarea id="pesan" name="pesan" rows="5" placeholder="Tuliskan pesan Anda..." required></textarea>
+                </div>
+                <button type="submit" class="btn">Kirim Pesan</button>
+            </form>
+        </div>
+    </section>
+
+    
+    <footer>
+        <p>&copy; 2026 Portofolio Saya. Hak Cipta Dilindungi.</p>
+    </footer>
+
+</body>
+</html>
